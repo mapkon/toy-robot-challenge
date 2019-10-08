@@ -88,4 +88,10 @@ public class PlaceCommandTest extends BaseTest {
 		Position position = command.execute(robot, context).getPosition();
 		assertThat(position.getY(), is(equalTo(0)));
 	}
+
+	@Test
+	public void testThatExecuteSetsFaceOnRobot() throws Exception {
+		Position position = command.execute(robot, southContext).getPosition();
+		assertThat(position.getFace(), is(equalTo(Face.SOUTH)));
+	}
 }
