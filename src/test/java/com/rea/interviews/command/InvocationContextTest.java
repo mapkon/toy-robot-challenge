@@ -11,14 +11,22 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import com.rea.interviews.BaseTest;
+import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
+import com.rea.interviews.command.impl.ReplayCommand;
+import com.rea.interviews.command.impl.ReportCommand;
+import com.rea.interviews.command.impl.RightCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class InvocationContextTest extends BaseTest {
 
 	final String moveInvocationContext = "MOVE";
+	final String leftInvoicationContext = "LEFT";
+	final String rightInvoicationContext = "RIGHT";
+	final String reportInvoicationContext = "REPORT";
+	final String replayInvoicationContext = "REPLAY";
 
 	@Test
 	public void testThatCreateAnInvocationDoesNotReturnNull() {
@@ -41,6 +49,26 @@ public class InvocationContextTest extends BaseTest {
 	}
 
 	@Test
+	public void testThatGetContextCommandReturnsCorrectLeftCommand() {
+		assertThat(context.getContextCommand(leftInvoicationContext), is(equalTo(RobotCommands.LEFT)));
+	}
+
+	@Test
+	public void testThatGetContextCommandReturnsCorrectRightCommand() {
+		assertThat(context.getContextCommand(rightInvoicationContext), is(equalTo(RobotCommands.RIGHT)));
+	}
+
+	@Test
+	public void testThatGetContextCommandReturnsCorrectReportCommand() {
+		assertThat(context.getContextCommand(reportInvoicationContext), is(equalTo(RobotCommands.REPORT)));
+	}
+
+	@Test
+	public void testThatGetContextCommandReturnsCorrectReplayCommand() {
+		assertThat(context.getContextCommand(replayInvoicationContext), is(equalTo(RobotCommands.REPLAY)));
+	}
+
+	@Test
 	public void testThatGetRobotCommandDoesNotReturnNull() {
 		assertNotNull(context.getRobotCommand(RobotCommands.PLACE));
 	}
@@ -53,6 +81,26 @@ public class InvocationContextTest extends BaseTest {
 	@Test
 	public void testThatGetRobotCommandReturnsCorrectMoveCommand() {
 		assertThat(context.getRobotCommand(RobotCommands.MOVE), instanceOf(MoveCommand.class));
+	}
+
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectLeftCommand() {
+		assertThat(context.getRobotCommand(RobotCommands.LEFT), instanceOf(LeftCommand.class));
+	}
+
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectRightCommand() {
+		assertThat(context.getRobotCommand(RobotCommands.RIGHT), instanceOf(RightCommand.class));
+	}
+
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectReportCommand() {
+		assertThat(context.getRobotCommand(RobotCommands.REPORT), instanceOf(ReportCommand.class));
+	}
+
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectReplayCommand() {
+		assertThat(context.getRobotCommand(RobotCommands.REPLAY), instanceOf(ReplayCommand.class));
 	}
 
 	@Test

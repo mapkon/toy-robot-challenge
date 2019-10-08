@@ -1,7 +1,11 @@
 package com.rea.interviews.command;
 
+import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
+import com.rea.interviews.command.impl.ReplayCommand;
+import com.rea.interviews.command.impl.ReportCommand;
+import com.rea.interviews.command.impl.RightCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
 import com.rea.interviews.robot.Robot;
 
@@ -95,6 +99,14 @@ public class InvocationContext {
 			return new PlaceCommand();
 		case MOVE:
 			return new MoveCommand();
+		case LEFT:
+			return new LeftCommand();
+		case RIGHT:
+			return new RightCommand();
+		case REPORT:
+			return new ReportCommand();
+		case REPLAY:
+			return new ReplayCommand();
 		default:
 			return new UnknownCommand();
 		}
