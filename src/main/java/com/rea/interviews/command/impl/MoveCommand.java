@@ -17,6 +17,10 @@ public class MoveCommand implements Command<Robot> {
 		switch (face) {
 		case NORTH:
 			robot.setPosition(new Position(currentPosition.getX(), currentPosition.getY() + 1, currentPosition.getFace()));
+			break;
+		case SOUTH:
+			robot.setPosition(new Position(currentPosition.getX(), currentPosition.getY() - 1, currentPosition.getFace()));
+			break;
 		default:
 			break;
 		}

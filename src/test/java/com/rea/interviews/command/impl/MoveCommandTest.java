@@ -63,14 +63,14 @@ public class MoveCommandTest extends BaseTest {
 	@Test
 	public void testThatExecuteModifiesYCoordinateOnSouthFace() throws Exception {
 		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, context).getPosition();
-		assertThat(pos.getY(), is(equalTo(1)));
+		Position pos = command.execute(bot, southContext).getPosition();
+		assertThat(pos.getY(), is(equalTo(-1)));
 	}
 
 	@Test
 	public void testThatExecuteDoesNotModifyXCoordinateOnSouthFace() throws Exception {
 		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, context).getPosition();
+		Position pos = command.execute(bot, southContext).getPosition();
 		assertThat(pos.getX(), is(equalTo(0)));
 	}
 }
