@@ -11,11 +11,14 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import com.rea.interviews.BaseTest;
+import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class InvocationContextTest extends BaseTest {
+
+	final String moveInvocationContext = "MOVE";
 
 	@Test
 	public void testThatCreateAnInvocationDoesNotReturnNull() {
@@ -32,6 +35,10 @@ public class InvocationContextTest extends BaseTest {
 		assertThat(context.getContextCommand(PLACE_INVOCATION), is(equalTo(RobotCommands.PLACE)));
 	}
 
+	@Test
+	public void testThatGetContextCommandReturnsCorrectMoveCommand() {
+		assertThat(context.getContextCommand(moveInvocationContext), is(equalTo(RobotCommands.MOVE)));
+	}
 
 	@Test
 	public void testThatGetRobotCommandDoesNotReturnNull() {
@@ -43,6 +50,10 @@ public class InvocationContextTest extends BaseTest {
 		assertThat(context.getRobotCommand(RobotCommands.PLACE), instanceOf(PlaceCommand.class));
 	}
 
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectMoveCommand() {
+		assertThat(context.getRobotCommand(RobotCommands.MOVE), instanceOf(MoveCommand.class));
+	}
 
 	@Test
 	public void testThatGetRobotCommandReturnsUnknownForUndefinedCommand() {

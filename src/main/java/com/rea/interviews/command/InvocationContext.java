@@ -1,5 +1,6 @@
 package com.rea.interviews.command;
 
+import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
 import com.rea.interviews.robot.Robot;
@@ -92,6 +93,8 @@ public class InvocationContext {
 		switch (command) {
 		case PLACE:
 			return new PlaceCommand();
+		case MOVE:
+			return new MoveCommand();
 		default:
 			return new UnknownCommand();
 		}
