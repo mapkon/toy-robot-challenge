@@ -2,12 +2,28 @@ package com.rea.interviews.movement;
 
 import com.rea.interviews.exception.InvalidArgumentException;
 
+/**
+ *
+ * Models the positional information of a given a context.
+ *
+ * @author Night King
+ *
+ */
 public class Position {
 
 	private int x;
 	private int y;
 	private Face face;
 
+	/**
+	 * Creates a position given valid coordinates and face direction.
+	 *
+	 * @param x The X coordinate
+	 * @param y The Y coordinate
+	 * @param face The compass Face
+	 *
+	 * @throws InvalidArgumentException If the face is null.
+	 */
 	public Position(int x, int y, Face face) throws InvalidArgumentException {
 		this.x = x;
 		this.y = y;

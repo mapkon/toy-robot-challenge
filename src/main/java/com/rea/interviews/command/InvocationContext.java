@@ -4,6 +4,21 @@ import com.rea.interviews.command.impl.PlaceCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
 import com.rea.interviews.robot.Robot;
 
+/**
+ * The invocation context for a given simulation.
+ * <p>
+ * This could be a set of commands captured from the command line or command that
+ * have been read in from a file. It is assumed that the commands will be in the
+ * following format:
+ * <p>
+ * <code>
+ * COMMAND X_COORD,Y_COORD,FACE
+ * COMMAND
+ * </code>
+ *
+ * @author Night King
+ *
+ */
 public class InvocationContext {
 
 	private String x;

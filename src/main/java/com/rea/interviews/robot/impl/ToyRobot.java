@@ -5,6 +5,12 @@ import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 
+/**
+ * An implementation of the robot interface to be used in textual simulations.
+ *
+ * @author Night King
+ *
+ */
 public class ToyRobot implements Robot {
 
 	private Position position = null;
