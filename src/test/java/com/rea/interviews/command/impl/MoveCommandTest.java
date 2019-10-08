@@ -24,6 +24,7 @@ public class MoveCommandTest extends BaseTest {
 
 	Robot robot = null;
 	Command<Robot> command = new MoveCommand();
+	Command<Robot> placeCommand = new PlaceCommand();
 
 	@BeforeAll
 	public void setUp() throws InvalidArgumentException {
@@ -42,35 +43,64 @@ public class MoveCommandTest extends BaseTest {
 
 	@Test
 	public void testThatExecuteDoesNotChangeFace() throws Exception {
+		placeCommand.execute(robot, context);
 		Position pos = command.execute(robot, context).getPosition();
 		assertThat(pos.getFace(), is(equalTo(Face.NORTH)));
 	}
 
 	@Test
 	public void testThatExecuteModifiesYCoordinateOnNorthFace() throws Exception {
-		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, context).getPosition();
+		placeCommand.execute(robot, context);
+		Position pos = command.execute(robot, context).getPosition();
 		assertThat(pos.getY(), is(equalTo(1)));
 	}
 
 	@Test
 	public void testThatExecuteDoesNotModifyXCoordinateOnNorthFace() throws Exception {
-		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, context).getPosition();
+		placeCommand.execute(robot, context);
+		Position pos = command.execute(robot, context).getPosition();
 		assertThat(pos.getX(), is(equalTo(0)));
 	}
 
 	@Test
 	public void testThatExecuteModifiesYCoordinateOnSouthFace() throws Exception {
-		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, southContext).getPosition();
-		assertThat(pos.getY(), is(equalTo(-1)));
+		placeCommand.execute(robot, southContext);
+		Position pos = command.execute(robot, southContext).getPosition();
+		assertThat(pos.getY(), is(equalTo(0)));
 	}
 
 	@Test
 	public void testThatExecuteDoesNotModifyXCoordinateOnSouthFace() throws Exception {
-		Robot bot = new ToyRobot();
-		Position pos = command.execute(bot, southContext).getPosition();
-		assertThat(pos.getX(), is(equalTo(0)));
+		placeCommand.execute(robot, southContext);
+		Position pos = command.execute(robot, southContext).getPosition();
+		assertThat(pos.getX(), is(equalTo(1)));
+	}
+
+	@Test
+	public void testThatExecuteDoesNotModifYCoordinateOnEastFace() throws Exception {
+		placeCommand.execute(robot, eastContext);
+		Position pos = command.execute(robot, eastContext).getPosition();
+		assertThat(pos.getY(), is(equalTo(2)));
+	}
+
+	@Test
+	public void testThatExecuteModifiesXCoordinateOnEastFace() throws Exception {
+		placeCommand.execute(robot, eastContext);
+		Position pos = command.execute(robot, eastContext).getPosition();
+		assertThat(pos.getX(), is(equalTo(2)));
+	}
+
+	@Test
+	public void testThatExecuteDoesNotModifYCoordinateOnWestFace() throws Exception {
+		placeCommand.execute(robot, westContext);
+		Position pos = command.execute(robot, westContext).getPosition();
+		assertThat(pos.getY(), is(equalTo(1)));
+	}
+
+	@Test
+	public void testThatExecuteModifiesXCoordinateOnWestFace() throws Exception {
+		placeCommand.execute(robot, westContext);
+		Position pos = command.execute(robot, westContext).getPosition();
+		assertThat(pos.getX(), is(equalTo(1)));
 	}
 }

@@ -7,5 +7,5 @@ package com.rea.interviews.movement;
  *
  */
 public enum Face {
-	NORTH, SOUTH
+	NORTH, SOUTH, EAST, WEST
 }
