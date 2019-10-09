@@ -1,5 +1,6 @@
 package com.rea.interviews.command.impl;
 
+import com.rea.interviews.Constants;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.CommandFactory;
 import com.rea.interviews.command.InvocationContext;
@@ -45,8 +46,7 @@ public class PlaceCommand implements Command<Robot> {
 		try {
 			return Face.valueOf(face.toUpperCase());
 		} catch (Exception ex) {
-			throw new InvalidArgumentException(
-					"The specified Face is invalid. Expected values are: NORTH | EAST | SOUTH | WEST.");
+			throw new InvalidArgumentException(Constants.INVALID_FACE);
 		}
 	}
 }
