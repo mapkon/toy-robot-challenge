@@ -3,6 +3,9 @@ package com.rea.interviews.command.impl;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.CommandFactory;
 import com.rea.interviews.command.InvocationContext;
+import com.rea.interviews.exception.InvalidArgumentException;
+import com.rea.interviews.movement.Face;
+import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 
 /**
@@ -18,9 +21,22 @@ import com.rea.interviews.robot.Robot;
  */
 public class LeftCommand implements Command<Robot> {
 
+	private final int MAX_FACE_NUM = 4;
+	private final int LEFT_TURN_PREDICATE = -1;
+
 	@Override
-	public Robot execute(Robot robot, InvocationContext context) {
-		// TODO Auto-generated method stub
-		return null;
+	public Robot execute(Robot robot, InvocationContext context) throws InvalidArgumentException {
+		Position currentPosition = robot.getPosition();
+		Position newPosition = new Position(currentPosition.getX(), currentPosition.getY(),
+				this.getFace(currentPosition));
+		robot.setPosition(newPosition);
+		return robot;
+	}
+
+	Face getFace(Position position) {
+		Face currentFace = position.getFace();
+		int ordinal = (currentFace.ordinal() + LEFT_TURN_PREDICATE) < 0 ? MAX_FACE_NUM - 1
+				: (currentFace.ordinal() + -1) % MAX_FACE_NUM;
+		return Face.values()[ordinal];
 	}
 }
