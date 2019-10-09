@@ -1,18 +1,19 @@
 package com.rea.interviews.command.impl;
 
 import com.rea.interviews.command.Command;
+import com.rea.interviews.command.CommandFactory;
 import com.rea.interviews.command.InvocationContext;
+import com.rea.interviews.exception.InvalidArgumentException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 
 /**
- * Models the interface for the <code>PLACE</code> command. 
+ * Models the interface for the <code>PLACE</code> command.
  * <p>
- * The expected invocation context should follow this pattern: 
- * <code>
+ * The expected invocation context should follow this pattern: <code>
  * PLACE X_COORD,Y_COORD,FACE
- * </code> 
+ * </code>
  * <p>
  * An example would be:
  * <p>
@@ -20,8 +21,13 @@ import com.rea.interviews.robot.Robot;
  * PLACE 0,0,NORTH
  * </code>
  * <p>
- * Which would place the Robot at x coordinate 0 and y coordinate 0 facing NORTH.
+ * Which would place the Robot at x coordinate 0 and y coordinate 0 facing
+ * NORTH.
  * 
+ * @see Command
+ * @see CommandFactory
+ * @see InvocationContext
+ *
  * @author Night King
  *
  */

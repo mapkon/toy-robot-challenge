@@ -5,20 +5,20 @@ package com.rea.interviews.command;
  * given simulation.
  *
  * <p>
- * The following commands are supported: *
+ * The following commands are supported:
  * <p>
  * <code>
- *  PLACE<br>
- *  MOVE<br>
- *  LEFT<br>
- *  RIGHT<br>
- *  REPORT<b>
- *  REPLAY
+ *  <br>PLACE
+ *  <br>MOVE
+ *  <br>LEFT
+ *  <br>RIGHT
+ *  <br>REPORT
+ *  <br>REPLAY
  *  </code>
  *
  * @author Night King
  *
  */
 public enum RobotCommands {
-	PLACE, UNKNOWN, MOVE, LEFT, RIGHT, REPORT, REPLAY
+	PLACE, MOVE, LEFT, RIGHT, REPORT, REPLAY, EXIT, UNKNOWN
 }

@@ -1,25 +1,20 @@
 package com.rea.interviews.command;
 
-import com.rea.interviews.command.impl.LeftCommand;
-import com.rea.interviews.command.impl.MoveCommand;
-import com.rea.interviews.command.impl.PlaceCommand;
-import com.rea.interviews.command.impl.ReplayCommand;
-import com.rea.interviews.command.impl.ReportCommand;
-import com.rea.interviews.command.impl.RightCommand;
-import com.rea.interviews.command.impl.UnknownCommand;
-import com.rea.interviews.robot.Robot;
-
 /**
  * The invocation context for a given simulation.
  * <p>
- * This could be a set of commands captured from the command line or command that
- * have been read in from a file. It is assumed that the commands will be in the
- * following format:
+ * This could be a set of commands captured from the command line or command
+ * that have been read in from a file. It is assumed that the commands will be
+ * in the following format:
  * <p>
  * <code>
  * COMMAND X_COORD,Y_COORD,FACE
  * COMMAND
  * </code>
+ *
+ * @see Command
+ * @see CommandFactory
+ * @see InvocationContext
  *
  * @author Night King
  *
@@ -30,15 +25,9 @@ public class InvocationContext {
 	private String y;
 	private String args = "";
 	private String face = "";
-	private Command<Robot> command = null;
 
 	public InvocationContext(String invocationContext) {
-		this.command = this.getRobotCommand(getContextCommand(invocationContext));
 		this.setArgs(this.getCommandArguments(invocationContext));
-	}
-
-	public Command<Robot> getCommand() {
-		return command;
 	}
 
 	public String getArgs() {
@@ -77,38 +66,19 @@ public class InvocationContext {
 		return this;
 	}
 
-	RobotCommands getContextCommand(String invocationContext) {
-		return RobotCommands.valueOf(invocationContext.split(" ")[0]);
-	}
-
 	String getCommandArguments(String invocationContext) {
 		String[] context = invocationContext.split(" ");
 		if (context.length > 1) {
 			String[] args = context[1].split(",");
 			this.setX(args[0]);
-			this.setY(args[1]);
-			this.setFace(args[2]);
+			if (args.length > 1) {
+				this.setY(args[1]);
+			}
+			if (args.length > 2) {
+				this.setFace(args[2]);
+			}
 			return context[1].toString();
 		}
 		return "";
-	}
-
-	Command<Robot> getRobotCommand(RobotCommands command) {
-		switch (command) {
-		case PLACE:
-			return new PlaceCommand();
-		case MOVE:
-			return new MoveCommand();
-		case LEFT:
-			return new LeftCommand();
-		case RIGHT:
-			return new RightCommand();
-		case REPORT:
-			return new ReportCommand();
-		case REPLAY:
-			return new ReplayCommand();
-		default:
-			return new UnknownCommand();
-		}
 	}
 }
