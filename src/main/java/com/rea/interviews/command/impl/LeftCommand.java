@@ -21,7 +21,7 @@ import com.rea.interviews.robot.Robot;
  */
 public class LeftCommand implements Command<Robot> {
 
-	private final int MAX_FACE_NUM = 4;
+	protected final int MAX_FACE_NUM = 4;
 	private final int LEFT_TURN_PREDICATE = -1;
 
 	@Override
