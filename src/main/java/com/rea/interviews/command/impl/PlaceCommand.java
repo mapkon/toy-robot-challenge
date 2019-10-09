@@ -35,8 +35,18 @@ public class PlaceCommand implements Command<Robot> {
 
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
-		Position position = new Position(Integer.parseInt(context.getX()), Integer.parseInt(context.getY()),
-				Face.valueOf(context.getFace()));
-		return robot.setPosition(position);
+		int _x = Integer.parseInt(context.getX());
+		int _y = Integer.parseInt(context.getY());
+		Position newPosition = new Position(_x, _y, this.getFace(context.getFace()));
+		return robot.setPosition(newPosition);
+	}
+
+	Face getFace(String face) throws InvalidArgumentException {
+		try {
+			return Face.valueOf(face.toUpperCase());
+		} catch (Exception ex) {
+			throw new InvalidArgumentException(
+					"The specified Face is invalid. Expected values are: NORTH | EAST | SOUTH | WEST.");
+		}
 	}
 }

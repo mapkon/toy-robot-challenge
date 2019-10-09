@@ -86,4 +86,40 @@ public class PlaceCommandTest extends BaseTest {
 		Position position = command.execute(robot, southContext).getPosition();
 		assertThat(position.getFace(), is(equalTo(Face.SOUTH)));
 	}
+
+	@Test
+	public void testThatGetFaceDoesNotReturnNull() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertNotNull(command.getFace("NORTH"));
+	}
+
+	@Test
+	public void testThatGetFaceReturnsCorrectFaceForNorth() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertThat(command.getFace("NoRth"), is(equalTo(Face.NORTH)));
+	}
+
+	@Test
+	public void testThatGetFaceReturnsCorrectFaceForEast() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertThat(command.getFace("EasT"), is(equalTo(Face.EAST)));
+	}
+
+	@Test
+	public void testThatGetFaceReturnsCorrectFaceForSouth() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertThat(command.getFace("South"), is(equalTo(Face.SOUTH)));
+	}
+
+	@Test
+	public void testThatGetFaceReturnsCorrectFaceForWest() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertThat(command.getFace("WEsT"), is(equalTo(Face.WEST)));
+	}
+	
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatUnknownFaceThrowsException() throws InvalidArgumentException {
+		PlaceCommand command = new PlaceCommand();
+		assertThat(command.getFace("Ned Stark"), is(equalTo(Face.WEST)));
+	}
 }
