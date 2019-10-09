@@ -5,12 +5,9 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
@@ -21,13 +18,12 @@ import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.robot.impl.ToyRobot;
 
-@TestInstance(Lifecycle.PER_CLASS)
 public class PlaceCommandTest extends BaseTest {
 
 	Robot robot = null;
 	Command<Robot> command = new PlaceCommand();
 
-	@BeforeAll
+	@Before
 	public void setUp() throws InvalidArgumentException {
 		robot = new ToyRobot();
 	}
@@ -60,20 +56,16 @@ public class PlaceCommandTest extends BaseTest {
 		assertThat(position.getFace(), is(equalTo(Face.NORTH)));
 	}
 
-	@Test
-	public void testThatExecuteThrowsExceptionOnInvalidCoordinate() {
+	@Test(expected = IllegalArgumentException.class)
+	public void testThatExecuteThrowsExceptionOnInvalidCoordinate() throws Exception {
 		InvocationContext invalidContext = new InvocationContext("PLACE s,0,NORTH");
-		assertThrows(NumberFormatException.class, () -> {
-			command.execute(robot, invalidContext);
-		});
+		command.execute(robot, invalidContext);
 	}
 
-	@Test
-	public void testThatExecuteThrowsExceptionOnInvalidFace() {
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatExecuteThrowsExceptionOnInvalidFace() throws Exception {
 		InvocationContext invalidContext = new InvocationContext("PLACE 1,0,NERTH");
-		assertThrows(IllegalArgumentException.class, () -> {
-			command.execute(robot, invalidContext);
-		});
+		command.execute(robot, invalidContext);
 	}
 
 	// Tests on robot remote handle

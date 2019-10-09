@@ -6,27 +6,25 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
+import com.rea.interviews.command.InvocationContext;
 import com.rea.interviews.exception.InvalidArgumentException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.robot.impl.ToyRobot;
 
-@TestInstance(Lifecycle.PER_CLASS)
 public class MoveCommandTest extends BaseTest {
 
 	Robot robot = null;
 	Command<Robot> command = new MoveCommand();
 	Command<Robot> placeCommand = new PlaceCommand();
 
-	@BeforeAll
+	@Before
 	public void setUp() throws InvalidArgumentException {
 		robot = new ToyRobot();
 	}

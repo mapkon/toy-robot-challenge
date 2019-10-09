@@ -4,21 +4,17 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.rea.interviews.exception.InvalidArgumentException;
 
-@TestInstance(Lifecycle.PER_CLASS)
 public class PositionTest {
 
 	Position position = null;
 
-	@BeforeAll
+	@Before
 	public void setUp() throws InvalidArgumentException {
 		position = new Position(1, 2, Face.NORTH);
 	}
@@ -43,10 +39,18 @@ public class PositionTest {
 		assertThat(position.getFace(), is(equalTo(Face.NORTH)));
 	}
 
-	@Test
-	public void testThatNullFaceThrowsException() {
-		assertThrows(InvalidArgumentException.class, () -> {
-			new Position(0, 0, null);
-		});
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatNullFaceThrowsException() throws InvalidArgumentException {
+		new Position(0, 0, null);
+	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatInvalidXCoordThrowsException() throws InvalidArgumentException {
+		new Position(5, 0, null);
+	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatInvalidYCoordThrowsException() throws InvalidArgumentException {
+		new Position(0, 5, Face.EAST);
 	}
 }
