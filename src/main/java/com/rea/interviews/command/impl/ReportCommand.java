@@ -23,7 +23,7 @@ public class ReportCommand implements Command<Robot> {
 
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(robot.toString());
+		return robot;
 	}
 }

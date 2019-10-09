@@ -101,4 +101,14 @@ public class MoveCommandTest extends BaseTest {
 		Position pos = command.execute(robot, westContext).getPosition();
 		assertThat(pos.getX(), is(equalTo(1)));
 	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatToStringReturnsProperPositionAfterMultipleMoves() throws Exception {
+		ToyRobot bot = new ToyRobot();
+		new PlaceCommand().execute(bot, new InvocationContext("PLACE 1,2,NORTH"));
+		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
+		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
+		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
+		assertThat(bot.toString(), is(equalTo("4,2,WEST")));
+	}
 }

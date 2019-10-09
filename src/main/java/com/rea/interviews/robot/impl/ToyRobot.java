@@ -28,4 +28,16 @@ public class ToyRobot implements Robot {
 	public Position getPosition() {
 		return this.position;
 	}
+
+	@Override
+	public String toString() {
+		final String SEPARATOR = ",";
+		StringBuilder report = new StringBuilder();
+		report.append(this.position.getX());
+		report.append(SEPARATOR);
+		report.append(this.position.getY());
+		report.append(SEPARATOR);
+		report.append(position.getFace());
+		return report.toString();
+	}
 }
