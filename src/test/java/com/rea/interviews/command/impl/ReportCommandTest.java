@@ -3,6 +3,7 @@ package com.rea.interviews.command.impl;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import java.io.ByteArrayOutputStream;
@@ -14,21 +15,21 @@ import org.junit.Test;
 import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.InvocationContext;
-import com.rea.interviews.exception.InvalidArgumentException;
+import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.robot.impl.ToyRobot;
 
 public class ReportCommandTest extends BaseTest {
 
 	Robot robot = null;
-	InvocationContext context = null;
 	ByteArrayOutputStream content = null;
 	Command<Robot> command = new ReportCommand();
 	Command<Robot> placeCommand = new PlaceCommand();
 
 	@Before
-	public void setUp() throws InvalidArgumentException {
-		robot = new ToyRobot();
+	public void setUp() throws Exception {
+		robot = new ToyRobot(surface);
+		placeCommand.execute(robot, context);
 	}
 
 	@Test
@@ -66,5 +67,21 @@ public class ReportCommandTest extends BaseTest {
 		new MoveCommand().execute(robot, new InvocationContext("MOVE"));
 		command.execute(robot, context);
 		assertThat(content.toString().trim(), is(equalTo("1,4,NORTH")));
+	}
+
+	@Test
+	public void testThatNonPlaceRobotIgnoresMoveCommand() throws Exception {
+		ToyRobot bot = new ToyRobot(surface);
+		Position pos = command.execute(bot, westContext).getPosition();
+		assertNull(pos);
+	}
+
+	@Test
+	public void testThatExecuteOnNonPlacedRobotReturnsEmptyString() throws Exception {
+		content = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(content));
+		// execute
+		command.execute(new ToyRobot(surface), context);
+		assertThat(content.toString().trim(), is(equalTo("")));
 	}
 }

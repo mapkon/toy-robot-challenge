@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
@@ -11,8 +12,6 @@ import org.junit.Test;
 
 import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
-import com.rea.interviews.command.InvocationContext;
-import com.rea.interviews.exception.InvalidArgumentException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
@@ -25,17 +24,19 @@ public class MoveCommandTest extends BaseTest {
 	Command<Robot> placeCommand = new PlaceCommand();
 
 	@Before
-	public void setUp() throws InvalidArgumentException {
-		robot = new ToyRobot();
+	public void setUp() throws Exception {
+		robot = new ToyRobot(surface);
 	}
 
 	@Test
 	public void testThatExecuteDoesNotReturnNull() throws Exception {
+		placeCommand.execute(robot, context);
 		assertNotNull(command.execute(robot, context));
 	}
 
 	@Test
 	public void testThatExecuteReturnsRobot() throws Exception {
+		placeCommand.execute(robot, context);
 		assertThat(command.execute(robot, context), instanceOf(Robot.class));
 	}
 
@@ -102,13 +103,10 @@ public class MoveCommandTest extends BaseTest {
 		assertThat(pos.getX(), is(equalTo(1)));
 	}
 
-	@Test(expected = InvalidArgumentException.class)
-	public void testThatToStringReturnsProperPositionAfterMultipleMoves() throws Exception {
-		ToyRobot bot = new ToyRobot();
-		new PlaceCommand().execute(bot, new InvocationContext("PLACE 1,2,NORTH"));
-		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
-		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
-		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
-		assertThat(bot.toString(), is(equalTo("4,2,WEST")));
+	@Test
+	public void testThatNonPlaceRobotIgnoresMoveCommand() throws Exception {
+		ToyRobot bot = new ToyRobot(surface);
+		Position pos = command.execute(bot, westContext).getPosition();
+		assertNull(pos);
 	}
 }

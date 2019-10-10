@@ -3,6 +3,7 @@ package com.rea.interviews.command.impl;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import java.io.ByteArrayOutputStream;
@@ -15,6 +16,7 @@ import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.InvocationContext;
 import com.rea.interviews.movement.Face;
+import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.robot.impl.ToyRobot;
 
@@ -26,7 +28,7 @@ public class RightCommandTest extends BaseTest {
 
 	@Before
 	public void setUp() throws Exception {
-		robot = new ToyRobot();
+		robot = new ToyRobot(surface);
 		new PlaceCommand().execute(robot, southContext);
 	}
 
@@ -113,6 +115,13 @@ public class RightCommandTest extends BaseTest {
 		new MoveCommand().execute(robot, new InvocationContext("MOVE"));
 		new ReportCommand().execute(robot, new InvocationContext("REPORT"));
 		assertThat(content.toString().trim(), is(equalTo("3,1,SOUTH")));
+	}
+
+	@Test
+	public void testThatNonPlaceRobotIgnoresMoveCommand() throws Exception {
+		ToyRobot bot = new ToyRobot(surface);
+		Position pos = command.execute(bot, westContext).getPosition();
+		assertNull(pos);
 	}
 
 }

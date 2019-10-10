@@ -48,9 +48,4 @@ public class PositionTest {
 	public void testThatInvalidXCoordThrowsException() throws InvalidArgumentException {
 		new Position(5, 0, null);
 	}
-
-	@Test(expected = InvalidArgumentException.class)
-	public void testThatInvalidYCoordThrowsException() throws InvalidArgumentException {
-		new Position(0, 5, Face.EAST);
-	}
 }

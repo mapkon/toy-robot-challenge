@@ -1,9 +1,12 @@
 package com.rea.interviews;
 
 import com.rea.interviews.command.InvocationContext;
+import com.rea.interviews.surface.Surface;
+import com.rea.interviews.surface.impl.SquareSurface;
 
 public abstract class BaseTest {
 
+	protected Surface surface = new SquareSurface();
 	protected final String PLACE_INVOCATION = "PLACE 0,0,NORTH";
 	protected final String PLACE_CONTEXT_EAST = "PLACE 1,2,EAST";
 	protected final String PLACE_CONTEXT_WEST = "PLACE 2,1,WEST";

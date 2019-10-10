@@ -15,7 +15,10 @@ public class Position {
 	private int x;
 	private int y;
 	private Face face;
-	private int MAX_COORDINATE = 4;
+
+	public Position() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Creates a position given valid coordinates and face direction.
@@ -27,31 +30,17 @@ public class Position {
 	 * @throws InvalidArgumentException If the face is null.
 	 */
 	public Position(int x, int y, Face face) throws InvalidArgumentException {
+		this.x = x;
+		this.y = y;
 		this.setFace(face);
-		this.x = this.setX(x);
-		this.y = this.setY(y);
 	}
 
 	public int getX() {
 		return this.x;
 	}
 
-	private int setX(int x) throws InvalidArgumentException {
-		if (x > MAX_COORDINATE) {
-			throw new InvalidArgumentException(Constants.INVALID_X_COORDINATE);
-		}
-		return x;
-	}
-
 	public int getY() {
 		return this.y;
-	}
-
-	private int setY(int y) throws InvalidArgumentException {
-		if (y > MAX_COORDINATE) {
-			throw new InvalidArgumentException(Constants.INVALID_Y_COORDINATE);
-		}
-		return y;
 	}
 
 	public Face getFace() {

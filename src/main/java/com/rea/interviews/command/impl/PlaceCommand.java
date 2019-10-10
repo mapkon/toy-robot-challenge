@@ -8,6 +8,7 @@ import com.rea.interviews.exception.InvalidArgumentException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
+import com.rea.interviews.surface.Surface;
 
 /**
  * Models the interface for the <code>PLACE</code> command.
@@ -36,10 +37,14 @@ public class PlaceCommand implements Command<Robot> {
 
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
+		Surface surface = robot.getSurface();
 		int _x = Integer.parseInt(context.getX());
 		int _y = Integer.parseInt(context.getY());
 		Position newPosition = new Position(_x, _y, this.getFace(context.getFace()));
-		return robot.setPosition(newPosition);
+		if (surface.isValidPosition(newPosition)) {
+			return robot.setPosition(newPosition).setPlaced(true);
+		}
+		return robot;
 	}
 
 	Face getFace(String face) throws InvalidArgumentException {

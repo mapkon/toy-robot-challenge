@@ -8,14 +8,15 @@ import com.rea.interviews.command.InvocationContext;
 import com.rea.interviews.exception.ExitException;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.robot.impl.ToyRobot;
+import com.rea.interviews.surface.impl.SquareSurface;
 
 public class Simulator {
 
 	public static void main(String[] args) throws Exception {
 
 		boolean isReady = true;
-		Robot robot = new ToyRobot();
 		Console simulationConsole = System.console();
+		Robot robot = new ToyRobot(new SquareSurface());
 
 		if (simulationConsole == null) {
 			System.err.println("No available console for simulation.");

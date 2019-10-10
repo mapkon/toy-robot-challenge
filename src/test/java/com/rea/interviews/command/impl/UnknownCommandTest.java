@@ -28,7 +28,7 @@ public class UnknownCommandTest extends BaseTest {
 
 	@Before
 	public void setUp() throws InvalidArgumentException {
-		robot = new ToyRobot();
+		robot = new ToyRobot(surface);
 		context = new InvocationContext("KHALESI");
 	}
 

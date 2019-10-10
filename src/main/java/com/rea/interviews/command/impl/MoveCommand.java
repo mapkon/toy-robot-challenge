@@ -3,7 +3,6 @@ package com.rea.interviews.command.impl;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.CommandFactory;
 import com.rea.interviews.command.InvocationContext;
-import com.rea.interviews.exception.InvalidArgumentException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
@@ -21,25 +20,35 @@ import com.rea.interviews.robot.Robot;
 public class MoveCommand implements Command<Robot> {
 
 	@Override
-	public Robot execute(Robot robot, InvocationContext context) throws InvalidArgumentException {
-
-		Position currentPosition = robot.getPosition();
-		Face face = currentPosition.getFace();
-		switch (face) {
-		case NORTH:
-			robot.setPosition(new Position(currentPosition.getX(), currentPosition.getY() + 1, currentPosition.getFace()));
-			break;
-		case SOUTH:
-			robot.setPosition(new Position(currentPosition.getX(), currentPosition.getY() - 1, currentPosition.getFace()));
-			break;
-		case EAST:
-			robot.setPosition(new Position(currentPosition.getX() + 1, currentPosition.getY(), currentPosition.getFace()));
-			break;
-		case WEST:
-			robot.setPosition(new Position(currentPosition.getX() - 1, currentPosition.getY(), currentPosition.getFace()));
-			break;
-		default:
-			break;
+	public Robot execute(Robot robot, InvocationContext context) throws Exception {
+		// TODO: Consider refactoring if there is time.
+		if (robot.isPlaced()) {
+			Position newPosition = null;
+			Position currentPosition = robot.getPosition();
+			Face face = currentPosition.getFace();
+			switch (face) {
+			case NORTH:
+				newPosition = new Position(currentPosition.getX(), currentPosition.getY() + 1,
+						currentPosition.getFace());
+				break;
+			case SOUTH:
+				newPosition = new Position(currentPosition.getX(), currentPosition.getY() - 1,
+						currentPosition.getFace());
+				break;
+			case EAST:
+				newPosition = new Position(currentPosition.getX() + 1, currentPosition.getY(),
+						currentPosition.getFace());
+				break;
+			case WEST:
+				newPosition = new Position(currentPosition.getX() - 1, currentPosition.getY(),
+						currentPosition.getFace());
+				break;
+			default:
+				break;
+			}
+			if (robot.getSurface().isValidPosition(newPosition)) {
+				robot.setPosition(newPosition);
+			}
 		}
 		return robot;
 	}

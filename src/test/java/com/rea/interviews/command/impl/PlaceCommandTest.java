@@ -3,8 +3,10 @@ package com.rea.interviews.command.impl;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.Command;
 import com.rea.interviews.command.InvocationContext;
 import com.rea.interviews.exception.InvalidArgumentException;
+import com.rea.interviews.exception.InvalidPositionException;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
@@ -25,7 +28,7 @@ public class PlaceCommandTest extends BaseTest {
 
 	@Before
 	public void setUp() throws InvalidArgumentException {
-		robot = new ToyRobot();
+		robot = new ToyRobot(surface);
 	}
 
 	@Test
@@ -116,10 +119,40 @@ public class PlaceCommandTest extends BaseTest {
 		PlaceCommand command = new PlaceCommand();
 		assertThat(command.getFace("WEsT"), is(equalTo(Face.WEST)));
 	}
-	
+
 	@Test(expected = InvalidArgumentException.class)
 	public void testThatUnknownFaceThrowsException() throws InvalidArgumentException {
 		PlaceCommand command = new PlaceCommand();
 		assertThat(command.getFace("Ned Stark"), is(equalTo(Face.WEST)));
+	}
+
+	@Test
+	public void testThatExecuteUpdatesRobotsPlaceStatus() throws Exception {
+		command.execute(robot, southContext);
+		assertTrue(robot.isPlaced());
+	}
+
+	@Test(expected = InvalidPositionException.class)
+	public void testThatInvalidXLessThanMinCoordinateThrowsError() throws Exception {
+		command.execute(robot, new InvocationContext("PLACE -6,4,EAST"));
+		assertFalse(robot.isPlaced());
+	}
+
+	@Test(expected = InvalidPositionException.class)
+	public void testThatInvalidXGreaterThanMaxCoordinateThrowsError() throws Exception {
+		command.execute(robot, new InvocationContext("PLACE 6,4,EAST"));
+		assertFalse(robot.isPlaced());
+	}
+
+	@Test(expected = InvalidPositionException.class)
+	public void testThatInvalidYLessThanMinCoordinateThrowsError() throws Exception {
+		command.execute(robot, new InvocationContext("PLACE 2,6,EAST"));
+		assertFalse(robot.isPlaced());
+	}
+
+	@Test(expected = InvalidPositionException.class)
+	public void testThatInvalidYGreaterThanMaxCoordinateThrowsError() throws Exception {
+		command.execute(robot, new InvocationContext("PLACE 3,6,EAST"));
+		assertFalse(robot.isPlaced());
 	}
 }
