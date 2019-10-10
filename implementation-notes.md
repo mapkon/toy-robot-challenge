@@ -18,6 +18,8 @@ I use this for two reasons:
 
 My aim is to help the maintainer look at the code and reason about my decisions, hopefully with the same mind and arc like I did.
 
+And also, just as a class should do one thing, a method one thing, I also make the test test one thing, meaning one assert per test. Yeah, I am that creepy about tests.
+
 # Design
 
 This was a tough one, but I will document the major decisions I made.
@@ -57,5 +59,18 @@ However, I have a strong dislike to case coding because I think it is a code sme
 - Implement a jump method to test the extensibility of the application
 - Implement another surface to see how far we can probe the app in that Direction
 - Refactor the MoveCommand execute method, it is too large and the switch statement looks ugly
+
+## Robot notes
+
+READ FROM file
+LOG Each Command starting with name (on surface and replay)
+
+Jumping robot 
+Intelligent robot that cannot exceed boundaries
+
+  - When at end of EAST, MOVE SOUTH || WEST || NORTH
+  - When at end of SOUTH, MOVE WEST || NORTH || EAST
+  - When at end of WEST MOVE NORTH || EAST || SOUTH
+  - When at end of NORTH, MOVE EAST || WEST || SOUTH 
 
 Happy reviewing.

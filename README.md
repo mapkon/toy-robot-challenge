@@ -104,6 +104,10 @@ movement of the toy robot.
 
 Please do not put your name in any of the submitted code since this makes it harder for us to review your submission anonymously.
 
+## IDE Preparation
+
+- Navigate to the project folder
+- Run `mvn eclipse:eclipse` or your favorite editor command, if supported by maven.
 
 ## To Run Tests
 
