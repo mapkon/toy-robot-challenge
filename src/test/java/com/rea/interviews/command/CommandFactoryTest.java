@@ -13,7 +13,6 @@ import com.rea.interviews.command.impl.ExitCommand;
 import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
-import com.rea.interviews.command.impl.ReplayCommand;
 import com.rea.interviews.command.impl.ReportCommand;
 import com.rea.interviews.command.impl.RightCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
@@ -55,11 +54,6 @@ public class CommandFactoryTest extends BaseTest {
 	@Test
 	public void testThatGetContextCommandReturnsCorrectReportCommand() {
 		assertThat(CommandFactory.getContextCommand(reportInvoicationContext), is(equalTo(RobotCommands.REPORT)));
-	}
-
-	@Test
-	public void testThatGetContextCommandReturnsCorrectReplayCommand() {
-		assertThat(CommandFactory.getContextCommand(replayInvoicationContext), is(equalTo(RobotCommands.REPLAY)));
 	}
 
 	@Test
@@ -105,11 +99,6 @@ public class CommandFactoryTest extends BaseTest {
 	@Test
 	public void testThatGetRobotCommandReturnsCorrectReportCommand() {
 		assertThat(CommandFactory.getRobotCommand(RobotCommands.REPORT), instanceOf(ReportCommand.class));
-	}
-
-	@Test
-	public void testThatGetRobotCommandReturnsCorrectReplayCommand() {
-		assertThat(CommandFactory.getRobotCommand(RobotCommands.REPLAY), instanceOf(ReplayCommand.class));
 	}
 
 	@Test

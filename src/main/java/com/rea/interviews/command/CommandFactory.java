@@ -4,7 +4,6 @@ import com.rea.interviews.command.impl.ExitCommand;
 import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
-import com.rea.interviews.command.impl.ReplayCommand;
 import com.rea.interviews.command.impl.ReportCommand;
 import com.rea.interviews.command.impl.RightCommand;
 import com.rea.interviews.command.impl.UnknownCommand;
@@ -59,8 +58,6 @@ public class CommandFactory {
 			return new RightCommand();
 		case REPORT:
 			return new ReportCommand();
-		case REPLAY:
-			return new ReplayCommand();
 		case EXIT:
 			return new ExitCommand();
 		default:
