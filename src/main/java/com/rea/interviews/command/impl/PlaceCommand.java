@@ -42,9 +42,10 @@ public class PlaceCommand implements Command<Robot> {
 		int _y = Integer.parseInt(context.getY());
 		Position newPosition = new Position(_x, _y, this.getFace(context.getFace()));
 		if (surface.isValidPosition(newPosition)) {
-			return robot.setPosition(newPosition).setPlaced(true);
+			surface.addExecutedCommand(this);
+			bot = robot.setPosition(newPosition).setPlaced(true);
 		}
-		return robot;
+		return bot;
 	}
 
 	Face getFace(String face) throws InvalidArgumentException {

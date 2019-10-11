@@ -46,23 +46,31 @@ public class CommandFactory {
 		return getRobotCommand(getContextCommand(context));
 	}
 
-	static Command<Robot> getRobotCommand(RobotCommands command) {
-		switch (command) {
+	static Command<Robot> getRobotCommand(RobotCommands rCommand) {
+		Command<Robot> command = null;
+		switch (rCommand) {
 		case PLACE:
-			return new PlaceCommand();
+			command = new PlaceCommand();
+			break;
 		case MOVE:
-			return new MoveCommand();
+			command = new MoveCommand();
+			break;
 		case LEFT:
-			return new LeftCommand();
+			command = new LeftCommand();
+			break;
 		case RIGHT:
-			return new RightCommand();
+			command = new RightCommand();
+			break;
 		case REPORT:
-			return new ReportCommand();
+			command = new ReportCommand();
+			break;
 		case EXIT:
-			return new ExitCommand();
+			command = new ExitCommand();
+			break;
 		default:
-			return new UnknownCommand();
+			command = new UnknownCommand();
 		}
+		return command;
 	}
 
 	static RobotCommands getContextCommand(String invocationContext) {
