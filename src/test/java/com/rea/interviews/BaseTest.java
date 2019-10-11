@@ -14,6 +14,7 @@ public abstract class BaseTest {
 	protected Surface surface = new SquareSurface();
 	protected Command<Robot> command = new PlaceCommand();
 	protected Command<Robot> moveCommand = new MoveCommand();
+	protected final String JUMP_INVOCATION = "JUMP 0,0,1";
 	protected final String PLACE_INVOCATION = "PLACE 0,0,NORTH";
 	protected final String PLACE_CONTEXT_EAST = "PLACE 1,2,EAST";
 	protected final String PLACE_CONTEXT_WEST = "PLACE 2,1,WEST";

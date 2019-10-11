@@ -66,6 +66,8 @@ public class ToyRobot implements Robot {
 		report.append(SEPARATOR);
 		report.append(this.position.getY());
 		report.append(SEPARATOR);
+		report.append(this.position.getZ());
+		report.append(SEPARATOR);
 		report.append(position.getFace());
 		return report.toString();
 	}

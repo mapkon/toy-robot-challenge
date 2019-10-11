@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.rea.interviews.BaseTest;
 import com.rea.interviews.command.impl.ExitCommand;
+import com.rea.interviews.command.impl.JumpCommand;
 import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
@@ -22,6 +23,7 @@ public class CommandFactoryTest extends BaseTest {
 
 	final String exitInvocationContext = "EXIT";
 	final String moveInvocationContext = "MOVE";
+	final String jumpInvoicationContext = "JUMP";
 	final String leftInvoicationContext = "LEFT";
 	final String rightInvoicationContext = "RIGHT";
 	final String reportInvoicationContext = "REPORT";
@@ -120,5 +122,15 @@ public class CommandFactoryTest extends BaseTest {
 	@Test
 	public void testThatGetRobotCommandReturnsCorrectReplayCommand() {
 		assertThat(CommandFactory.getRobotCommand(RobotCommands.REPLAY), instanceOf(ReplayCommand.class));
+	}
+
+	@Test
+	public void testThatGetContextCommandReturnsCorrectJumpCommand() {
+		assertThat(CommandFactory.getContextCommand(jumpInvoicationContext), is(equalTo(RobotCommands.JUMP)));
+	}
+
+	@Test
+	public void testThatGetRobotCommandReturnsCorrectJumpCommand() {
+		assertThat(CommandFactory.getRobotCommand(RobotCommands.JUMP), instanceOf(JumpCommand.class));
 	}
 }

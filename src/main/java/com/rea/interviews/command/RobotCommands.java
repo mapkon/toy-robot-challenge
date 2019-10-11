@@ -20,5 +20,5 @@ package com.rea.interviews.command;
  *
  */
 public enum RobotCommands {
-	PLACE, MOVE, LEFT, RIGHT, REPORT, REPLAY, EXIT, UNKNOWN
+	PLACE, MOVE, JUMP, LEFT, RIGHT, REPORT, REPLAY, EXIT, UNKNOWN
 }

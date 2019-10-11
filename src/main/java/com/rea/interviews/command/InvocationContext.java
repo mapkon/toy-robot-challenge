@@ -40,15 +40,6 @@ public class InvocationContext {
 		return this;
 	}
 
-	public String getFace() {
-		return this.face;
-	}
-
-	private InvocationContext setFace(String face) {
-		this.face = face;
-		return this;
-	}
-
 	public String getY() {
 		return this.y;
 	}
@@ -74,6 +65,15 @@ public class InvocationContext {
 
 	public String getZ() {
 		return this.z;
+	}
+
+	public String getFace() {
+		return this.face;
+	}
+
+	private InvocationContext setFace(String face) {
+		this.face = face;
+		return this;
 	}
 
 	String getCommandArguments(String invocationContext) {

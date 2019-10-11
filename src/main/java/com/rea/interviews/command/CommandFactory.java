@@ -1,6 +1,7 @@
 package com.rea.interviews.command;
 
 import com.rea.interviews.command.impl.ExitCommand;
+import com.rea.interviews.command.impl.JumpCommand;
 import com.rea.interviews.command.impl.LeftCommand;
 import com.rea.interviews.command.impl.MoveCommand;
 import com.rea.interviews.command.impl.PlaceCommand;
@@ -55,6 +56,9 @@ public class CommandFactory {
 			break;
 		case MOVE:
 			command = new MoveCommand();
+			break;
+		case JUMP:
+			command = new JumpCommand();
 			break;
 		case LEFT:
 			command = new LeftCommand();

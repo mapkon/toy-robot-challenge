@@ -14,7 +14,7 @@ public class Position {
 
 	private int x;
 	private int y;
-	private int z;
+	private int z = 0;
 	private Face face;
 
 	public Position() {
