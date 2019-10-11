@@ -40,10 +40,13 @@ public class LeftCommand implements Command<Robot> {
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws InvalidArgumentException {
 		if (robot.isPlaced()) {
+			this.context = context;
 			Position currentPosition = robot.getPosition();
 			Position newPosition = new Position(currentPosition.getX(), currentPosition.getY(),
 					this.getFace(currentPosition));
+			// mutate
 			robot.setPosition(newPosition);
+			robot.getSurface().addExecutedCommand(this);
 		}
 		return robot;
 	}

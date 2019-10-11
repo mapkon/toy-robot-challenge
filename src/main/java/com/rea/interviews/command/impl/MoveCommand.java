@@ -54,8 +54,10 @@ public class MoveCommand implements Command<Robot> {
 			default:
 				break;
 			}
-			if (robot.getSurface().isValidPosition(newPosition)) {
+			Surface surface = robot.getSurface();
+			if (surface.isValidPosition(newPosition)) {
 				robot.setPosition(newPosition);
+				surface.addExecutedCommand(this);
 			}
 		}
 		return robot;

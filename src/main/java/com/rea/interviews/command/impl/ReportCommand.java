@@ -31,7 +31,9 @@ public class ReportCommand implements Command<Robot> {
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) {
 		if (robot.isPlaced()) {
+			this.context = context;
 			System.out.println(robot.toString());
+			robot.getSurface().addExecutedCommand(this);
 		}
 		return robot;
 	}
