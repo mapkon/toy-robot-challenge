@@ -18,7 +18,7 @@ import com.rea.interviews.exception.InvalidPositionException;
 import com.rea.interviews.robot.Robot;
 import com.rea.interviews.surface.impl.SquareSurface;
 
-public class ToyRobotTests extends BaseTest {
+public class ToyRobotTest extends BaseTest {
 
 	ToyRobot bot = new ToyRobot(surface);
 	Command<Robot> pCommand = new PlaceCommand();

@@ -56,7 +56,6 @@ However, I have a strong dislike to case coding because I think it is a code sme
 
 - Implementing and dealing with obstacles.
 - Implement the intelligent robot, as it seems a nice challenge.
-- Implement a jump method to test the extensibility of the application
 - Implement another surface to see how far we can probe the app in that Direction
 - Refactor the MoveCommand execute method, it is too large and the switch statement looks ugly
 
@@ -65,7 +64,6 @@ However, I have a strong dislike to case coding because I think it is a code sme
 - READ FROM file
 - LOG Each Command starting with name (on surface and replay)
 
-- Jumping robot 
 - Intelligent robot that cannot exceed boundaries
 
   - When at end of EAST, MOVE SOUTH || WEST || NORTH
