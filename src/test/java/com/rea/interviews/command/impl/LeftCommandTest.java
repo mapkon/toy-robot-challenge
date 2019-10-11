@@ -114,7 +114,7 @@ public class LeftCommandTest extends BaseTest {
 		command.execute(robot, context);
 		new MoveCommand().execute(robot, new InvocationContext("MOVE"));
 		new ReportCommand().execute(robot, new InvocationContext("REPORT"));
-		assertThat(content.toString().trim(), is(equalTo("3,3,NORTH")));
+		assertThat(content.toString().trim(), is(equalTo("3,3,0,NORTH")));
 	}
 
 	@Test

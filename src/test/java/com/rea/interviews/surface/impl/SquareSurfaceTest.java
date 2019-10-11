@@ -126,7 +126,7 @@ public class SquareSurfaceTest extends BaseTest {
 		ToyRobot bot = new ToyRobot(new SquareSurface());
 		this.executeCommandLeft(bot);
 		bot.getSurface().retraceSteps(bot).getPosition();
-		assertThat(bot.toString(), is(equalTo("0,0,NORTH")));
+		assertThat(bot.toString(), is(equalTo("0,0,0,NORTH")));
 	}
 
 	@Test

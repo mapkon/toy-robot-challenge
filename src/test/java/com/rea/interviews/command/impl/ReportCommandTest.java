@@ -42,7 +42,7 @@ public class ReportCommandTest extends BaseTest {
 		content = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(content));
 		command.execute(robot, context);
-		assertThat(content.toString().trim(), is(equalTo("0,0,NORTH")));
+		assertThat(content.toString().trim(), is(equalTo("0,0,0,NORTH")));
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class ReportCommandTest extends BaseTest {
 		// execute
 		placeCommand.execute(robot, context);
 		command.execute(robot, context);
-		assertThat(content.toString().trim(), is(equalTo("1,2,WEST")));
+		assertThat(content.toString().trim(), is(equalTo("1,2,0,WEST")));
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class ReportCommandTest extends BaseTest {
 		new MoveCommand().execute(robot, new InvocationContext("MOVE"));
 		new MoveCommand().execute(robot, new InvocationContext("MOVE"));
 		command.execute(robot, context);
-		assertThat(content.toString().trim(), is(equalTo("1,4,NORTH")));
+		assertThat(content.toString().trim(), is(equalTo("1,4,0,NORTH")));
 	}
 
 	@Test

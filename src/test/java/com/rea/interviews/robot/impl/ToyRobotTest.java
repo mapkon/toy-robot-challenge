@@ -26,20 +26,20 @@ public class ToyRobotTest extends BaseTest {
 	@Test
 	public void testThatToStringDoesNotReturnDefaultString() throws Exception {
 		pCommand.execute(bot, new InvocationContext("PLACE 0,0,NORTH"));
-		assertThat(bot.toString(), is(equalTo("0,0,NORTH")));
+		assertThat(bot.toString(), is(equalTo("0,0,0,NORTH")));
 	}
 
 	@Test
 	public void testThatToStringReturnsProperPosition() throws Exception {
 		pCommand.execute(bot, new InvocationContext("PLACE 1,2,WEST"));
-		assertThat(bot.toString(), is(equalTo("1,2,WEST")));
+		assertThat(bot.toString(), is(equalTo("1,2,0,WEST")));
 	}
 
 	@Test
 	public void testThatToStringReturnsProperPositionAfterMove() throws Exception {
 		pCommand.execute(bot, new InvocationContext("PLACE 1,2,WEST"));
 		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
-		assertThat(bot.toString(), is(equalTo("0,2,WEST")));
+		assertThat(bot.toString(), is(equalTo("0,2,0,WEST")));
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class ToyRobotTest extends BaseTest {
 		pCommand.execute(bot, new InvocationContext("PLACE 1,2,NORTH"));
 		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
 		new MoveCommand().execute(bot, new InvocationContext("MOVE"));
-		assertThat(bot.toString(), is(equalTo("1,4,NORTH")));
+		assertThat(bot.toString(), is(equalTo("1,4,0,NORTH")));
 	}
 
 	@Test(expected = InvalidPositionException.class)
