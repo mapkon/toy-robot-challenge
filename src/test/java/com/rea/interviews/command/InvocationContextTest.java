@@ -56,4 +56,15 @@ public class InvocationContextTest extends BaseTest {
 		context.getCommandArguments(PLACE_INVOCATION);
 		assertThat(context.getFace(), is(equalTo("NORTH")));
 	}
+
+	@Test
+	public void testThatGetCommandSetsCorrectPlacement() {
+		assertThat(context.getCommandArguments(JUMP_INVOCATION), is(equalTo("0,0,1")));
+	}
+
+	@Test
+	public void testThatGetCommandSetsZCoordinate() {
+		context.getCommandArguments(JUMP_INVOCATION);
+		assertThat(context.getZ(), is(equalTo("1")));
+	}
 }

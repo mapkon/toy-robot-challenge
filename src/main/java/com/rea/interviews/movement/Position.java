@@ -14,6 +14,7 @@ public class Position {
 
 	private int x;
 	private int y;
+	private int z;
 	private Face face;
 
 	public Position() {
@@ -34,12 +35,38 @@ public class Position {
 		this.setFace(face);
 	}
 
+	/**
+	 * Creates a position given valid coordinates and face direction.
+	 *
+	 * @param x    The X coordinate
+	 * @param y    The Y coordinate
+	 * @param z    The Z coordinate for determining depth
+	 * @param face The compass Face
+	 *
+	 * @throws InvalidArgumentException If the face is null.
+	 */
+	public Position(int x, int y, int z, Face face) throws InvalidArgumentException {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.setFace(face);
+	}
+
 	public int getX() {
 		return this.x;
 	}
 
 	public int getY() {
 		return this.y;
+	}
+
+	public int getZ() {
+		return this.z;
+	}
+
+	public Position setZ(int z) {
+		this.z = z;
+		return this;
 	}
 
 	public Face getFace() {

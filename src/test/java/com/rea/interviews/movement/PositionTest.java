@@ -48,4 +48,14 @@ public class PositionTest {
 	public void testThatInvalidXCoordThrowsException() throws InvalidArgumentException {
 		new Position(5, 0, null);
 	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatNullFaceWithZThrowsException() throws InvalidArgumentException {
+		new Position(0, 0, 0, null);
+	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testThatInvalidZCoordThrowsException() throws InvalidArgumentException {
+		new Position(5, 0, 0, null);
+	}
 }

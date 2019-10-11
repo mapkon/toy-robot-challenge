@@ -23,6 +23,7 @@ public class InvocationContext {
 
 	private String x;
 	private String y;
+	private String z;
 	private String args = "";
 	private String face = "";
 
@@ -66,6 +67,15 @@ public class InvocationContext {
 		return this;
 	}
 
+	public InvocationContext setZ(int z) {
+		this.z = String.valueOf(z);
+		return this;
+	}
+
+	public String getZ() {
+		return this.z;
+	}
+
 	String getCommandArguments(String invocationContext) {
 		String[] context = invocationContext.split(" ");
 		if (context.length > 1) {
@@ -75,10 +85,20 @@ public class InvocationContext {
 				this.setY(args[1]);
 			}
 			if (args.length > 2) {
-				this.setFace(args[2]);
+				this.setThirdArg(args[2]);
 			}
 			return context[1].toString();
 		}
 		return "";
+	}
+
+	private InvocationContext setThirdArg(String arg) {
+		InvocationContext context = null;
+		try {
+			context = this.setZ(Integer.parseInt(arg));
+		} catch (Exception ex) {
+			context = this.setFace(arg);
+		}
+		return context;
 	}
 }
