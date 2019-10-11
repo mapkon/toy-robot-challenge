@@ -21,6 +21,13 @@ import com.rea.interviews.robot.Robot;
  */
 public class ReportCommand implements Command<Robot> {
 
+	private InvocationContext context;
+
+	@Override
+	public InvocationContext getContext() {
+		return this.context;
+	}
+
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) {
 		if (robot.isPlaced()) {

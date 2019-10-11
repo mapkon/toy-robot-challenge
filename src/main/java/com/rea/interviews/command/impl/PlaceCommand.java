@@ -35,8 +35,17 @@ import com.rea.interviews.surface.Surface;
  */
 public class PlaceCommand implements Command<Robot> {
 
+	private InvocationContext context = null;
+
+	@Override
+	public InvocationContext getContext() {
+		return this.context;
+	}
+
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
+		Robot bot = robot;
+		this.context = context;
 		Surface surface = robot.getSurface();
 		int _x = Integer.parseInt(context.getX());
 		int _y = Integer.parseInt(context.getY());

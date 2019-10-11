@@ -26,6 +26,13 @@ import com.rea.interviews.robot.Robot;
 public interface Command<T> {
 
 	/**
+	 * Returns the invocation context used in the execution of this command.
+	 *
+	 * @return The invocation context.
+	 */
+	public InvocationContext getContext();
+
+	/**
 	 * Executes a given command.
 	 *
 	 * @param robot   The robot onto which the context will be imposed.

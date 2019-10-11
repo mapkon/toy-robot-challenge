@@ -6,6 +6,7 @@ import com.rea.interviews.command.InvocationContext;
 import com.rea.interviews.movement.Face;
 import com.rea.interviews.movement.Position;
 import com.rea.interviews.robot.Robot;
+import com.rea.interviews.surface.Surface;
 
 /**
  * Moves the Robot one unit in the direction it is facing.
@@ -19,10 +20,17 @@ import com.rea.interviews.robot.Robot;
  */
 public class MoveCommand implements Command<Robot> {
 
+	private InvocationContext context;
+	@Override
+	public InvocationContext getContext() {
+		return this.context;
+	}
+
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
 		// TODO: Consider refactoring if there is time.
 		if (robot.isPlaced()) {
+			this.context = context;
 			Position newPosition = null;
 			Position currentPosition = robot.getPosition();
 			Face face = currentPosition.getFace();
