@@ -21,13 +21,12 @@ import com.rea.interviews.robot.Robot;
  */
 public class LeftCommand implements Command<Robot> {
 
-	private InvocationContext context;
 	private final int MAX_FACE_NUM = 4;
 	protected int ROTATION_PREDICATE = -1;
 
 	@Override
 	public InvocationContext getContext() {
-		return this.context;
+		return null;
 	}
 
 	Face getFace(Position position) {
@@ -40,7 +39,6 @@ public class LeftCommand implements Command<Robot> {
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws InvalidArgumentException {
 		if (robot.isPlaced()) {
-			this.context = context;
 			Position currentPosition = robot.getPosition();
 			Position newPosition = new Position(currentPosition.getX(), currentPosition.getY(),
 					this.getFace(currentPosition));

@@ -6,17 +6,14 @@ import com.rea.interviews.robot.Robot;
 
 public class ReplayCommand implements Command<Robot> {
 
-	private InvocationContext context;
-
 	@Override
 	public InvocationContext getContext() {
-		return this.context;
+		return null;
 	}
 
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
 		if (robot.isPlaced()) {
-			this.context = context;
 			robot = robot.getSurface().retraceSteps(robot);
 		}
 		return robot;

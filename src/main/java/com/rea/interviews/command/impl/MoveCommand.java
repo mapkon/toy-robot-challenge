@@ -20,17 +20,15 @@ import com.rea.interviews.surface.Surface;
  */
 public class MoveCommand implements Command<Robot> {
 
-	private InvocationContext context;
 	@Override
 	public InvocationContext getContext() {
-		return this.context;
+		return null;
 	}
 
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
 		// TODO: Consider refactoring if there is time.
 		if (robot.isPlaced()) {
-			this.context = context;
 			Position newPosition = null;
 			Position currentPosition = robot.getPosition();
 			Face face = currentPosition.getFace();
