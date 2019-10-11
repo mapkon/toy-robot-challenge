@@ -62,11 +62,11 @@ However, I have a strong dislike to case coding because I think it is a code sme
 
 ## Robot notes
 
-READ FROM file
-LOG Each Command starting with name (on surface and replay)
+- READ FROM file
+- LOG Each Command starting with name (on surface and replay)
 
-Jumping robot 
-Intelligent robot that cannot exceed boundaries
+- Jumping robot 
+- Intelligent robot that cannot exceed boundaries
 
   - When at end of EAST, MOVE SOUTH || WEST || NORTH
   - When at end of SOUTH, MOVE WEST || NORTH || EAST
