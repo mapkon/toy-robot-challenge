@@ -18,13 +18,6 @@ import com.rea.interviews.robot.Robot;
  */
 public class UnknownCommand implements Command<Robot> {
 
-	private InvocationContext context;
-
-	@Override
-	public InvocationContext getContext() {
-		return this.context;
-	}
-
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) {
 		System.err.println(Constants.WRONG_COMMAND.concat(context.getArgs()));

@@ -30,7 +30,9 @@ public interface Command<T> {
 	 *
 	 * @return The invocation context.
 	 */
-	public InvocationContext getContext();
+	default InvocationContext getContext() {
+		return null;
+	}
 
 	/**
 	 * Executes a given command.

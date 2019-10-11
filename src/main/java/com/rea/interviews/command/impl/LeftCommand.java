@@ -24,11 +24,6 @@ public class LeftCommand implements Command<Robot> {
 	private final int MAX_FACE_NUM = 4;
 	protected int ROTATION_PREDICATE = -1;
 
-	@Override
-	public InvocationContext getContext() {
-		return null;
-	}
-
 	Face getFace(Position position) {
 		Face currentFace = position.getFace();
 		int predicate = currentFace.ordinal() + ROTATION_PREDICATE;

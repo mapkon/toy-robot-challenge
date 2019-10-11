@@ -21,13 +21,6 @@ import com.rea.interviews.robot.Robot;
  */
 public class ExitCommand implements Command<Robot> {
 
-	private InvocationContext context;
-
-	@Override
-	public InvocationContext getContext() {
-		return this.context;
-	}
-
 	@Override
 	public Robot execute(Robot robot, InvocationContext context) throws Exception {
 		throw new ExitException(Constants.EXIT_HANDLED);
