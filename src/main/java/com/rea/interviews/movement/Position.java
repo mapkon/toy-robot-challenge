@@ -17,7 +17,6 @@ public class Position {
 	private Face face;
 
 	public Position() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
